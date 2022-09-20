@@ -1,7 +1,14 @@
 <?php
 require_once "../Controller/ControllerOfficeKaryawan.php";
+if(isset($_POST['submit'])){
+    insert();
+}
 
+if(isset($_GET['delete'])){
+    delete($_GET['delete']);
+}
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -29,54 +36,81 @@ require_once "../Controller/ControllerOfficeKaryawan.php";
             <a class="nav-link" href="OfficeKaryawan.php">  Employee - Office</a>
         </div>
         </div>
-    </div>
+    </div> 
     </nav>
-    <?php var_dump($_SESSION)?>
     <h1 class="text-center">List Office Karyawan</h1>
     <table class="table table-dark mt-2 w-50 mx-auto">
         <thead>
             <tr>
                 <th class="col">No</th>
                 <th class="col">Employee</th>
-                <th class="col">Office</th>
+                <th class="col">Jabatan</th>
+                <th class="col">Office</th> 
+                <th class="col">Aksi</th>
             </tr>
         </thead>
 
 
         <tbody>
-        <?php
+
+            <?php
                $angka=0;
-               var_dump(index());
-            foreach (index() as $index => $officeKaryawan) {
-                $angka++;
-                echo " 
-                        <tr>
-                            <td>".$angka."</td>
-                            <td>".$officeKaryawan->karyawan."</td>
-                            <td>".$officeKaryawan->office."</td>
-                            <td><a href='officeKaryawan.php?delete=".$index."'><button class='btn btn-primary'>Delete</button></a></td>
-                        </tr>";
-            }
             ?>
 
+            <?php
+            // var_dump(index());
+            ?>
 
+            <?php
+             $a = karyawan();
+
+            //  var_dump($a[0]->karyawan);
+            ?>
+            <?php foreach (index() as $index => $officeKaryawan )  :
+                $idKaryawan = $officeKaryawan->karyawan;
+                $idOffice = $officeKaryawan->office;
+                
+                ?>
+                <?php $angka++; ?>
+               
+                        <tr>
+                            <td><?= $angka ?></td>
+                            <td><?= $a[$idKaryawan]->nama ?></td>
+                            <td><?= $a[$idKaryawan]->jabatan ?></td>
+                            
+
+                            <td><?= $officeKaryawan->office ?></td>
+                            <td><a href='officeKaryawan.php?delete=<?= $index ?>'><button class='btn btn-primary'>Delete</button></a></td>
+                        </tr>
+            
+            <?php endforeach;?>
+
+          
+
+         
         </tbody>
+
+        <?php
+            // var_dump(Random());
+            // var_dump(Search("0"));
+            // var_dump(index());
+
+        ?>
     </table>
 
-
     <h1 class="text-center mt-2">List Office Karyawan</h1>
-    <form class="row g-3" method="POST" action="karyawan.php">
+    <form class="row g-3" method="POST" action="officeKaryawan.php">
        <div class="text-center">
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="karyawan" class="form-label">Karyawan</label>
-               
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="karyawan">
                     <?php
-                        foreach (karyawan() as $k) {
-                            echo "<option value=''>";
+                        foreach (karyawan()  as $index => $k) {
+                            echo "<option value='$index'>";
                             echo $k->nama;
                             echo "</option>";
                         }
+                       
                     ?>
               
 
@@ -88,10 +122,13 @@ require_once "../Controller/ControllerOfficeKaryawan.php";
                 <label for="office" class="form-label">Office</label>
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="office">
                 <?php
-                        foreach (office() as $k) {
-                            echo "<option value=''>";
-                            echo $k->nama;
+                        foreach (office() as $o) {
+                            echo "<option value='$o->nama'>";
+                            echo $o->nama;
                             echo "</option>";
+
+                                // echo "<input type='hidden' name='kota' value='$o->kota' hidden>";
+                                // echo "</input>";
                         }
                     ?>
                 </select>

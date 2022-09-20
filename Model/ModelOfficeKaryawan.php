@@ -1,6 +1,6 @@
 <?php
 
-class ModelOffice{
+class OfficeKaryawan{
     public $karyawan;
     public $office;
 }

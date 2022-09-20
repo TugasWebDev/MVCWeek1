@@ -38,7 +38,7 @@ if(isset($_GET['delete'])){
         </div>
     </div>
     </nav>
-    
+   
     <h1 class="text-center">List Karyawan</h1>
     <table class="table table-dark mt-2 w-50 mx-auto">
         <thead>
@@ -72,13 +72,14 @@ if(isset($_GET['delete'])){
         </tbody>
     </table>
 
-
+    <?php var_dump(SetId(1))?>
     <h1 class="text-center mt-2">Tambah Karyawan</h1>
     <form class="row g-3" method="POST" action="karyawan.php">
        <div class="text-center">
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama">
+                <input type="hidden" class="form-control" id="id" name="id" value="<?= SetId(0)?>">
             </div>
 
             <div class="form-group text-center w-50 d-inline-block">
@@ -95,7 +96,6 @@ if(isset($_GET['delete'])){
 
         <button name="submit" type="submit" class="d-block mx-auto mt-2 btn-sm btn btn-primary w-50">Submit</button>
    </form>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

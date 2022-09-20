@@ -9,7 +9,7 @@ if(!isset($_SESSION['listOffice'])){
 function insert(){
     $Office = new Office();
     $Office->nama = $_POST['nama'];
-    $Office->jabatan = $_POST['alamat'];
+    $Office->alamat = $_POST['alamat'];
     $Office->kota = $_POST['kota'];
     $Office->telp = $_POST['telp'];
     array_push($_SESSION['listOffice'], $Office);
