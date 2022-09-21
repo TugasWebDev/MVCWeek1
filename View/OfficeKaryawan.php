@@ -114,10 +114,11 @@ if (isset($_GET['delete'])) {
             
                 <?php if(indexKaryawan() == null): ?>
                         <option value="">Data Employee Belum Ada</option>
+                    <?php elseif(indexKaryawan() != null): ?>
+                        <option value="">Pilih Employee</option>
                     <?php endif;?>
-                    <option value="">Pilih Employee</option>
+    
                     <?php foreach (indexKaryawan()  as $index => $k) : ?>
-                      
                         <option value="<?= $index ?>"><?= $k->nama ?></option>
                     <?php endforeach; ?>
 
@@ -132,9 +133,11 @@ if (isset($_GET['delete'])) {
                 
                     <?php if(indexOffice() == null): ?>
                         <option value="">Data Office Belum Ada</option>
+                    <?php elseif(indexOffice() != null): ?>
+                        <option value="">Pilih Office</option>
                     <?php endif;?>
 
-                    <option value="">Pilih Office</option>
+                  
                     <?php foreach (indexOffice() as  $index => $o) : ?>
                         
                         <option value="<?= $index ?>"><?= $o->nama ?></option>
