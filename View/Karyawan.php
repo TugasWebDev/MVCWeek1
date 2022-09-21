@@ -1,12 +1,14 @@
 <?php
 require_once "../Controller/ControllerKaryawan.php";
+// session_start();
+// include_once("../Wrapping.php");
 
 if(isset($_POST['submit'])){
-    insert();
+    insertKaryawan();
 }
 
 if(isset($_GET['delete'])){
-    delete($_GET['delete']);
+    deleteKaryawan($_GET['delete']);
 }
 ?>
 
@@ -52,44 +54,45 @@ if(isset($_GET['delete'])){
         </thead>
 
         <tbody>
+    
             <?php
                $angka=0;
-               var_dump(index());
-            foreach (index() as $index => $karyawan) {
+            foreach (indexKaryawan() as $index => $karyawan) {
                 $angka++;
                 echo " 
                         <tr>
                             <td>".$angka."</td>
                             <td>".$karyawan->nama."</td>
                             <td>".$karyawan->jabatan."</td>
-                            <td>".$karyawan->usia."</td>
-                            <td><a href='karyawan.php?delete=".$index."'><button class='btn btn-primary'>Delete</button></a></td>
+                            <td>".$karyawan->usia." Tahun</td>
+                            <td><a href='karyawan.php?delete=".$index."'><button class='btn btn-danger'>Delete</button></a></td>
                         </tr>";
             }
             ?>
+           
 
 
         </tbody>
     </table>
 
-    <?php var_dump(SetId(1))?>
+
     <h1 class="text-center mt-2">Tambah Karyawan</h1>
     <form class="row g-3" method="POST" action="karyawan.php">
        <div class="text-center">
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama">
-                <input type="hidden" class="form-control" id="id" name="id" value="<?= SetId(0)?>">
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" required>
+
             </div>
 
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="jabatan" class="form-label">Jabatan</label>
-                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan Jabatan">
+                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan Jabatan" required>
             </div>
 
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="usia" class="form-label">Usia</label>
-                <input type="text" class="form-control" id="usia" name="usia" placeholder="Masukkan Usia">
+                <input type="number" class="form-control" id="usia" name="usia" placeholder="Masukkan Usia" required>
             </div>
 
         </div>

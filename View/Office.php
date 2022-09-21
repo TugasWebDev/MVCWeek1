@@ -1,12 +1,13 @@
 <?php
 require_once "../Controller/ControllerOffice.php";
 
+// include_once("../Wrapping.php");
 if(isset($_POST['submit'])){
-    insert();
+    insertOffice();
 }
 
 if(isset($_GET['delete'])){
-    delete($_GET['delete']);
+    deleteOffice($_GET['delete']);
 }
 ?>
 
@@ -55,8 +56,8 @@ if(isset($_GET['delete'])){
         <tbody>
         <?php
                $angka=0;
-               var_dump(index());
-            foreach (index() as $index => $office) {
+ 
+            foreach (indexOffice() as $index => $office) {
                 $angka++;
                 echo " 
                         <tr>
@@ -65,7 +66,7 @@ if(isset($_GET['delete'])){
                             <td>".$office->alamat."</td>
                             <td>".$office->kota."</td>
                             <td>".$office->telp."</td>
-                            <td><a href='office.php?delete=".$index."'><button class='btn btn-primary'>Delete</button></a></td>
+                            <td><a href='office.php?delete=".$index."'><button class='btn btn-danger'>Delete</button></a></td>
                         </tr>";
             }
             ?>
@@ -80,23 +81,23 @@ if(isset($_GET['delete'])){
        <div class="text-center">
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama">
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" required>
             </div>
 
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="alamat" class="form-label">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat">
+                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" required>
             </div>
 
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="kota" class="form-label">Kota</label>
-                <input type="text" class="form-control" id="kota" name="kota" placeholder="Masukkan Kota">
+                <input type="text" class="form-control" id="kota" name="kota" placeholder="Masukkan Kota" required>
             </div>
 
             
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="telp" class="form-label">No Telp</label>
-                <input type="number" class="form-control" id="telp" name="telp" placeholder="Masukkan Nomor Telpon">
+                <input type="number" class="form-control" id="telp" name="telp" placeholder="Masukkan Nomor Telpon" required>
             </div>
 
         </div>

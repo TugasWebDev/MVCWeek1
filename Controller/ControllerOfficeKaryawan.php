@@ -1,13 +1,14 @@
 <?php
-include_once("../Model/ModelOffice.php");
-include_once("../Model/ModelKaryawan.php");
-include_once("../Model/ModelOfficeKaryawan.php");
-session_start();
-if(!isset($_SESSION['listOfficeKaryawan'])){
+
+
+include_once("../Wrapping.php");
+
+if (!isset($_SESSION['listOfficeKaryawan'])) {
     $_SESSION['listOfficeKaryawan'] = array();
 }
 
-function insert(){
+function insert()
+{
     $Office = new OfficeKaryawan();
     $Office->karyawan = $_POST['karyawan'];
     $Office->office = $_POST['office'];
@@ -15,45 +16,15 @@ function insert(){
     array_push($_SESSION['listOfficeKaryawan'], $Office);
 }
 
-function index(){
+function index()
+{
     return $_SESSION['listOfficeKaryawan'];
 }
 
-function delete($id){
+function delete($id)
+{
     unset($_SESSION['listOfficeKaryawan'][$id]);
 }
 
-// //random
-// function Random(){
-//     return sizeof($_SESSION['listOfficeKaryawan']);
-// }
-// //cari
-// function Search($value)
-//   {
-//       return (array_search($value, $_SESSION['listKaryawan']));
-//   }
-
-//detail
-// function findObjectById($id){
-// $array = array($_SESSION['listKaryawan']);
-
-// if ( isset( $array[$id] ) ) {
-//     return $array[$id];
-// }
-
-// return false;
-// }
-
-
-
-
-// data karyawan & officce
-
-function karyawan(){
-    return $_SESSION['listKaryawan'];
-}
-function office(){
-    return $_SESSION['listOffice'];
-}
 
 
