@@ -1,5 +1,8 @@
 <?php
+require_once "../Controller/ControllerOffice.php";
+require_once "../Controller/ControllerKaryawan.php";
 include_once("../Wrapping.php");
+
 
 ?>
 <!doctype html>

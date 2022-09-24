@@ -1,11 +1,9 @@
 <?php
 
 
-include_once("../Wrapping.php");
+include_once("../Model/ModelOfficeKaryawan.php");
 
-if (!isset($_SESSION['listOfficeKaryawan'])) {
-    $_SESSION['listOfficeKaryawan'] = array();
-}
+
 
 function insert()
 {
@@ -26,5 +24,10 @@ function delete($id)
     unset($_SESSION['listOfficeKaryawan'][$id]);
 }
 
+function editOfficeKaryawan($id){
+    $_SESSION['listOfficeKaryawan'][$id]->setkaryawan($_POST['karyawan']);
+    $_SESSION['listOfficeKaryawan'][$id]->setoffice($_POST['office']);
+
+}
 
 

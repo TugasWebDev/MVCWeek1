@@ -1,10 +1,24 @@
 <?php
-include_once("../Model/ModelOffice.php");
-include_once("../Model/ModelKaryawan.php");
-include_once("../Model/ModelOfficeKaryawan.php");
+
 session_start();
-require_once "Controller/ControllerOfficeKaryawan.php";
-require_once "Controller/ControllerOffice.php";
-require_once "Controller/ControllerKaryawan.php";
+
+
+//karyawan
+if(!isset($_SESSION['listKaryawan'])){
+    //list karyawan
+    $_SESSION['listKaryawan'] = array();
+}
+
+
+//office
+if(!isset($_SESSION['listOffice'])){
+    $_SESSION['listOffice'] = array();
+}
+
+
+//office karyawan
+if (!isset($_SESSION['listOfficeKaryawan'])) {
+    $_SESSION['listOfficeKaryawan'] = array();
+}
 
 ?>

@@ -1,11 +1,6 @@
 <?php
 
-
-include_once("../Wrapping.php");
-if(!isset($_SESSION['listKaryawan'])){
-    //list karyawan
-    $_SESSION['listKaryawan'] = array();
-}
+include_once("../Model/ModelKaryawan.php");
 
 function insertKaryawan(){
     $karyawan = new karyawan();
@@ -17,6 +12,13 @@ function insertKaryawan(){
 
 function indexKaryawan(){
     return $_SESSION['listKaryawan'];
+}
+
+function editKaryawan($id){
+    $_SESSION['listKaryawan'][$id]->setnama($_POST['nama']);
+    $_SESSION['listKaryawan'][$id]->setjabatan($_POST['jabatan']);
+    $_SESSION['listKaryawan'][$id]->setusia($_POST['usia']);
+
 }
 
 function deleteKaryawan($id){

@@ -1,10 +1,9 @@
 <?php
 
 
-include_once("../Wrapping.php");
-if(!isset($_SESSION['listOffice'])){
-    $_SESSION['listOffice'] = array();
-}
+include_once("../Model/ModelOffice.php");
+
+
 
 function insertOffice(){
     $Office = new Office();
@@ -17,6 +16,14 @@ function insertOffice(){
 
 function indexOffice(){
     return $_SESSION['listOffice'];
+}
+
+function editOffice($id){
+    $_SESSION['listOffice'][$id]->setnama($_POST['nama']);
+    $_SESSION['listOffice'][$id]->setalamat($_POST['alamat']);
+    $_SESSION['listOffice'][$id]->setkota($_POST['kota']);
+    $_SESSION['listOffice'][$id]->settelp($_POST['telp']);
+
 }
 
 function deleteOffice($id){
