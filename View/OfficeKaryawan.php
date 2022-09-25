@@ -39,7 +39,7 @@ if (isset($_POST['edit'])) {
     <title>Hello, world!</title>
 </head>
 
-<body>
+<body style=" overflow-x: hidden;">
     <?php
     include_once("../header.php");
     ?>
@@ -104,21 +104,35 @@ if (isset($_POST['edit'])) {
     </table>
 
     <h1 class="text-center mt-2"><?php echo isset($_GET['edit']) ? ' Edit' : 'Tambah' ?>List Office Karyawan</h1>
+
     <form class="row g-3" method="POST" action="officeKaryawan.php">
+        <!-- inisialisasi id karyawan dan office -->
+        <?php
+           if (isset($_GET['edit'] )) {
+            $IdkaryawanEdit = ambilId($_GET['edit'])->karyawan;
+            $IdofficeEdit = ambilId($_GET['edit'])->office;
+            var_dump($IdkaryawanEdit);
+            var_dump($IdofficeEdit);
+        }
+
+
+        ?>
         <div class="text-center">
             <div class="form-group text-center w-50 d-inline-block">
                 <label for="karyawan" class="form-label">Karyawan</label>
+
+    
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="karyawan" required>
 
                     <?php if (indexKaryawan() == null) : ?>
                         <option value="">Data Employee Belum Ada</option>
                     <?php elseif (indexKaryawan() != null) : ?>
-                        <option value=""><?php echo isset($_GET['edit']) ? $_SESSION['listKaryawan'][$_GET['editIdKaryawan']]->nama : 'Pilih Employee' ?></option>
+                        <option value="<?php echo isset($IdkaryawanEdit) ? $IdkaryawanEdit  : '' ?>"> <?php echo isset($_GET['edit']) ? $_SESSION['listKaryawan'][$IdkaryawanEdit]->nama : 'Pilih Employee' ?></option>
                     <?php endif; ?>
 
                     <!-- loop data -->
                     <?php foreach (indexKaryawan()  as $index => $k) : ?>
-                        <?php if ($k->nama == $_SESSION['listKaryawan'][$_GET['editIdKaryawan']]->nama) : ?>
+                        <?php if ($k->nama == $_SESSION['listKaryawan'][$IdkaryawanEdit]->nama) : ?>
 
                         <?php else : ?>
                             <option value="<?= $index ?>"><?= $k->nama ?></option>
@@ -135,16 +149,17 @@ if (isset($_POST['edit'])) {
                 <label for="office" class="form-label">Office</label>
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="office" required>
 
+
                     <?php if (indexOffice() == null) : ?>
                         <option value="">Data Office Belum Ada</option>
                     <?php elseif (indexOffice() != null) : ?>
-                        <option value=""><?php echo isset($_GET['edit']) ? $_SESSION['listOffice'][$_GET['editIdOffice']]->nama : 'Pilih Office' ?></option>
+                        <option value="<?php echo isset($IdofficeEdit) ? $IdofficeEdit  : '' ?>"><?php echo isset($_GET['edit']) ? $_SESSION['listOffice'][$IdofficeEdit]->nama : 'Pilih Office' ?></option>
                     <?php endif; ?>
 
                     <!-- loop data -->
 
                     <?php foreach (indexOffice()  as $index => $o) : ?>
-                        <?php if ($o->nama == $_SESSION['listOffice'][$_GET['editIdOffice']]->nama) : ?>
+                        <?php if ($o->nama == $_SESSION['listOffice'][$IdofficeEdit]->nama) : ?>
 
                         <?php else : ?>
                             <option value="<?= $index ?>"><?= $o->nama ?></option>
@@ -156,9 +171,11 @@ if (isset($_POST['edit'])) {
             </div>
 
 
+
+
         </div>
 
-        <button name="<?php echo isset($_GET['edit']) ? 'edit' : 'submit'?>" value="<?php echo isset($_GET['edit']) ? $_GET['edit'] : ''?>" type="submit" class="d-block mx-auto mt-2 btn-sm btn btn-primary w-50">Submit</button>
+        <button name="<?php echo isset($_GET['edit']) ? 'edit' : 'submit' ?>" value="<?php echo isset($_GET['edit']) ? $_GET['edit'] : '' ?>" type="submit" class="d-block mx-auto mt-2 btn-sm btn btn-primary w-50">Submit</button>
     </form>
 
 

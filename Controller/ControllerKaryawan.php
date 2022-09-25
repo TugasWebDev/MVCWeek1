@@ -1,5 +1,6 @@
 <?php
 
+include_once("../Controller/ControllerOfficeKaryawan.php");
 include_once("../Model/ModelKaryawan.php");
 
 function insertKaryawan(){

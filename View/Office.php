@@ -28,7 +28,7 @@ if(isset($_POST['edit'])){
 
     <title>Hello, world!</title>
   </head>
-  <body>
+  <body style=" overflow-x: hidden;">
   <?php
     include_once("../header.php");
     ?>

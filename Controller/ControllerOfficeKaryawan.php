@@ -1,6 +1,6 @@
 <?php
 
-
+include_once("../Controller/ControllerOfficeKaryawan.php");
 include_once("../Model/ModelOfficeKaryawan.php");
 
 
@@ -8,15 +8,18 @@ include_once("../Model/ModelOfficeKaryawan.php");
 function insert()
 {
     $Office = new OfficeKaryawan();
-    $Office->karyawan = $_POST['karyawan'];
-    $Office->office = $_POST['office'];
-    // $Office->office = $_POST['kota'];
+    $Office->karyawan = $_POST['karyawan']; //idKaryawan
+    $Office->office = $_POST['office']; //idOffice
     array_push($_SESSION['listOfficeKaryawan'], $Office);
 }
 
 function index()
 {
     return $_SESSION['listOfficeKaryawan'];
+}
+
+function ambilId($id){
+    return index()[$id];
 }
 
 function delete($id)

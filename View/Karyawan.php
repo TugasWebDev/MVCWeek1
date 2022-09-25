@@ -34,7 +34,7 @@ if (isset($_POST['edit'])) {
     <title>Hello, world!</title>
 </head>
 
-<body>
+<body style=" overflow-x: hidden;">
     <?php
     include_once("../header.php");
     ?>
@@ -77,7 +77,7 @@ if (isset($_POST['edit'])) {
     </table>
 
 
-    <h1 class="text-center mt-2"><?php echo isset($_GET['edit']) ? ' Edit' : 'Tambah'?> Karyawan</h1>
+    <h1 class="text-center mt-2"> <?php echo isset($_GET['edit']) ? ' Edit' : 'Tambah'?> Karyawan</h1>
     <form class="row g-3" method="POST" action="karyawan.php">
         <div class="text-center">
             <div class="form-group text-center w-50 d-inline-block">
